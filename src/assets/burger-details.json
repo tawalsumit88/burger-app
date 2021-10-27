@@ -1,0 +1,25 @@
+[
+  {
+    "id": 1,
+    "productName": "Burger",
+    "description": "Fixed price Rs 5 each bun and fixed quantity 2",
+    "basePrise": 10,
+    "ingredients": [
+      {
+        "name": "Salad",
+        "price": 5,
+        "type": "decider"
+      },
+      {
+        "name": "Cheese Slices",
+        "price": 1,
+        "type": "units"
+      },
+      {
+        "name": "Cutlets",
+        "price": 2,
+        "type": "units"
+      }
+    ]
+  }
+]

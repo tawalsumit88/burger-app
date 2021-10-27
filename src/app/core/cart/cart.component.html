@@ -1,0 +1,46 @@
+<div class="cart-container">
+  <div class="actions">
+    <button mat-raised-button color="primary" (click)="gotoProduct()">
+      Back to Products
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="gotoPayment()"
+      [disabled]="!selectedProducts.length"
+    >
+      Payment (Total Rs {{ total }})
+    </button>
+    <button mat-raised-button color="primary" (click)="clearCart()">
+      Clear All
+    </button>
+  </div>
+  <div class="product-list">
+    <div
+      class="product mat-elevation-z3"
+      *ngFor="let cartItem of selectedProducts"
+    >
+      <h2>{{ cartItem.product.productName }}</h2>
+      <!-- <div class="ingredients"> -->
+      <div
+        class="ingredient"
+        *ngFor="let ingredient of cartItem.product.ingredients"
+      >
+        <ng-container *ngIf="ingredient.type === 'decider'">
+          <label>{{ ingredient.name }}</label
+          >: <span>{{ ingredient.decider ? "Yes" : "No" }}</span>
+        </ng-container>
+        <ng-container *ngIf="ingredient.type === 'units'">
+          <label>{{ ingredient.name }}</label
+          >: <span>{{ ingredient.quantity }}</span>
+        </ng-container>
+      </div>
+      <!-- </div> -->
+      <div class="total">Product Value: {{ cartItem.product.total }}</div>
+    </div>
+    <h3 *ngIf="!selectedProducts.length">
+      The cart is empty <br />Please go back to products page and selection some
+      product
+    </h3>
+  </div>
+</div>

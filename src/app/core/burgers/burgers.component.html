@@ -1,0 +1,80 @@
+<div class="product-container">
+  <h1>Product List</h1>
+  <div class="product-list">
+    <form [formGroup]="burgurForm">
+      <div class="product mat-elevation-z3" *ngFor="let product of productList">
+        <div class="header">
+          <h1>{{ product.productName }}</h1>
+          <div class="count">
+            <!-- {{ ingredient.quantity }} -->
+            <button type="button" (click)="dec(burgurForm.controls.count)">
+              -
+            </button>
+            <input type="text" formControlName="count" readonly />
+            <button type="button" (click)="inc(burgurForm.controls.count)">
+              +
+            </button>
+          </div>
+        </div>
+        <div class="description">
+          {{ product.description }}
+        </div>
+        <!-- <div class="ingredients"> -->
+        <div class="ingredient" *ngFor="let ingredient of product.ingredients">
+          <ng-container *ngIf="ingredient.type === 'decider'">
+            <label>{{ ingredient.name }}</label>
+            <div>
+              <mat-checkbox
+                formControlName="{{ ingredient.field }}"
+                (change)="changeDecider(burgurForm.controls[ingredient.field])"
+              ></mat-checkbox>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="ingredient.type === 'units'">
+            <label>{{ ingredient.name }}</label>
+            <div class="count">
+              <!-- {{ ingredient.quantity }} -->
+              <button
+                type="button"
+                (click)="dec(burgurForm.controls[ingredient.field])"
+              >
+                -
+              </button>
+              <input
+                type="text"
+                formControlName="{{ ingredient.field }}"
+                readonly
+              />
+              <button
+                type="button"
+                (click)="inc(burgurForm.controls[ingredient.field])"
+              >
+                +
+              </button>
+            </div>
+          </ng-container>
+        </div>
+        <!-- </div> -->
+      </div>
+    </form>
+    <div class="action-section">
+      <button
+        type="button"
+        mat-raised-button
+        color="primary"
+        (click)="gotoCart()"
+      >
+        Go to Cart
+      </button>
+      <button
+        type="button"
+        mat-raised-button
+        color="primary"
+        (click)="add()"
+        [disabled]="!burgurForm.controls.count.value"
+      >
+        Add (Product Total Rs. {{ product.total }})
+      </button>
+    </div>
+  </div>
+</div>

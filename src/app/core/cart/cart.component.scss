@@ -1,0 +1,33 @@
+.cart-container {
+  .actions {
+    display: flex;
+    padding: 16px;
+    gap: 16px;
+  }
+  .product-list {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+    .product {
+      width: 600px;
+      min-height: 150px;
+      padding: 16px;
+      border: 1px solid #a1a1a1;
+      border-radius: 6px;
+
+      .ingredient {
+        color: #646464;
+        label {
+          font-weight: bold;
+        }
+      }
+
+      .total {
+        height: 32px;
+        font-weight: bold;
+        margin-top: auto;
+      }
+    }
+  }
+}
